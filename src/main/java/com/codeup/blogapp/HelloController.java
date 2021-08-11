@@ -14,11 +14,11 @@ public class HelloController {
         return "Hello from Spring";
     }
 
-//    @GetMapping("/person")
-//    @ResponseBody
-//    public Person getPerson(){
-//        return new Person("Richard", "Bum");
-//    }
+    @GetMapping("/person")
+    @ResponseBody
+    public Person getPerson(){
+        return new Person("Richard", "Bum");
+    }
 
     @GetMapping("/hello/{name}")
     @ResponseBody
