@@ -1,4 +1,4 @@
-package web;
+package com.codeup.blogapp.web;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ViewController {
 
     @RequestMapping({"/", "/about", "/posts", "/login", "/home"})
-    public static String ShowView(){
-return "foward:/index.html";
+    public String ShowView() {
+        return "forward:/index.html";
     }
 }
