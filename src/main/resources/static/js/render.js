@@ -10,7 +10,10 @@ export default function render(props, route) {
     const title = `REST Blog - ${route.title}`;
     history.pushState(props, title, route.uri);
     document.title = title;
+    // add view amd navbar to dom
     app.innerHTML = `${Navbar(null)} ${route.returnView(props)}`;
+
+    //
     if (route.viewEvent){
         route.viewEvent();
     }
