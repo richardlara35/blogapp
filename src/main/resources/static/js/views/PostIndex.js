@@ -17,7 +17,7 @@ export default function PostIndex(props) {
                     </div>
 
                     <div class="form-group row">
-                        <button name="addPost" type="button" class="btn btn-primary">Add Post</button>
+                        <button id="create-btn" name="addPost" type="button" class="btn btn-primary">Add Post</button>
                     </div>
             </form>
 
@@ -30,40 +30,44 @@ export default function PostIndex(props) {
                     <button class="edit-post-btn" data-id=${post.id}>Edit</button>
                     <button class="delete-post-btn" data-id=${post.id}>Delete</button>
                 </div>
-                `
-    ).join('')}
+                
+    `).join('')}
             </div>
         </main>
     `;
 }
 
+export function PostsEvent() {
+    createPost();
+    editPost();
+    deletePost();
+}
+
 
 function createPost() {
-    $('#addPost').click(function() {
+    $('#create-btn').click(function() {
         let newPost = {
             title: $('#title').val(),
             content: $('#content').val(),
         }
-    })
+
     let request = {
         method: "POST",
         headers: {"Content-Type":"application/json"},
-        body: JSON.stringify(post)
+        body: JSON.stringify(newPost)
     }
-    fetch("http://localhost:8080/posts", request)
-        .then((res => {
+    fetch("http://localhost:8080/api/posts", request)
+        .then(res => {
             console.log(res.status);
             createView("/posts")
         }).catch(error => {
             console.log(error);
             createView("/posts")
-        }));
-}
+        });
+})}
 
 function editPost(){
     $('.edit-post-btn').click(function(){
-
-
 
         $(".edit-title, .edit-content").attr("readonly", false);
         $(this).siblings(".edit-title, .edit-content").attr("readonly", true);
@@ -77,7 +81,7 @@ function submitEdit(){
         title: $(this).siblings(".edit-title").text(),
         content: $(this).siblings(".edit-content").text(),
     }
-    $(this).off("click", submitEdit);
+
     let id = $(this).attr("data-id");
     let request = {
         method: "PUT",
@@ -85,41 +89,36 @@ function submitEdit(){
         body: JSON.stringify(post)
     }
     fetch(`http://localhost:8080/api/posts/${id}`, request)
-        .then((res => {
+        .then(res => {
             console.log(res.status);
             createView("/posts")
         }).catch(error => {
             console.log(error);
             createView("/posts")
-        }));
+        });
+    $(this).off("click", submitEdit);
 }
 
 function deletePost() {
+    $(".delete-post-btn").click(function (){
     let request = {
         method: "DELETE",
         headers: {"Content-Type":"application/json"},
     }
-    $(".delete-post-btn").click(function (){
-        let id = e.target.getAttribute('data-id');
+        let id = $(this).attr("data-id");
+
 
         fetch(`http://localhost:8080/api/posts/${id}`, request)
-            .then((res => {
+            .then(res => {
                 console.log(res.status);
                 createView("/posts")
             }).catch(error => {
                 console.log(error);
                 createView("/posts")
-            }));
+            });
 
     })
 }
 
-export function PostsEvent() {
-//call function for create btn listener
-    createPost();
-    editPost();
-    deletePost();
-    //call function for edit btn listener
-//call function for delete btn listener
-}
+
 
