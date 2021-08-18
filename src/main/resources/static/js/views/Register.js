@@ -1,4 +1,3 @@
-import createView from "../createView.js";
 
 export default function Register(props){
     return `<!DOCTYPE html>
@@ -21,26 +20,24 @@ export default function Register(props){
 </form>
 </body>
 </html>`;
+}
+export function RegisterEvent(){
 
-
-    export function RegisterEvent(){
-
-        $("#register-btn").click(function(){
-            let newUser = {
-                email: $('#email').val(),
-                username: $('#username').val(),
-                password: $('#password').val(),
-            }
-            let request = {
-                method: "POST",
-                header: {"Content-Type": "application/json"},
-                body: JSON.stringify(newUser)
-            };
-            fetch("http://localhost:8080/api/users", request)
-                .then((response) => {
-                    console.log(response.status)
-                    createView("/");
-                });
-        })
-    }
+    $("#register-btn").click(function(){
+        let newUser = {
+            email: $('#email').val(),
+            username: $('#username').val(),
+            password: $('#password').val(),
+        }
+        let request = {
+            method: "POST",
+            header: {"Content-Type": "application/json"},
+            body: JSON.stringify(newUser)
+        };
+        fetch("http://localhost:8080/api/users", request)
+            .then((response) => {
+                console.log(response.status)
+                createView("/");
+            });
+    })
 }

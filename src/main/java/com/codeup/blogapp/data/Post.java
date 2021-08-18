@@ -6,18 +6,18 @@ public class Post {
     private String content;
     private User user;
 
-    public Post(Long id, String title, String content) {
+    public Post(Long id, String title, String content, User user) {
         this.id = id;
         this.title = title;
         this.content = content;
         this.user = user;
     }
 
-    public Post(String title, String content){
-        this.title;
-        this.content;
-    }
-    public Post(){}
+//    public Post(String title, String content){
+//        this.title;
+//        this.content;
+//    }
+//    public Post(){}
 
     public Long getId() {
         return id;
