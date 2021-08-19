@@ -32,7 +32,7 @@ export default function router(URI) {
             returnView: Register,
             state: {},
             uri: '/register',
-            title: "register",
+            title: "Register",
             viewEvent: RegisterEvent
         },
         '/posts': {

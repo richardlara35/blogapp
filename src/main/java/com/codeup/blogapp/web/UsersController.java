@@ -16,9 +16,9 @@ public class UsersController {
 
     User user = new User(1L, "Amado3", "amadoIII@gmail.com", "secretPassword", null);
     List<Post> posts = new ArrayList<>(){{
-            add(new Post(1L,"A Whole New Post", "Super cool stuff", user ));
-            add(new Post(2L,"A Whole Old Post", "Boring stuff", user ));
-            add(new Post(3L,"Mid Posts", "Whole lotta nothing",user ));
+            add(new Post(1L,"A Whole New Post", "Super cool stuff", user,null ));
+            add(new Post(2L,"A Whole Old Post", "Boring stuff", user, null ));
+            add(new Post(3L,"Mid Posts", "Whole lotta nothing",user, null ));
     }};
 
     @GetMapping()
@@ -32,7 +32,7 @@ public class UsersController {
     }
 
     @GetMapping("{id}")
-    private User getUserById(@PathVariable Long id) {
+    private User findById(@PathVariable Long id) {
         // api/posts/1
         return getUsers().stream().filter(t -> id.equals(t.getId())).findFirst().orElse(null);
     }

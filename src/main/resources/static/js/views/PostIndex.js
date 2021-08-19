@@ -23,18 +23,32 @@ export default function PostIndex(props) {
 
             </div>
             <div class="post-container">
-                ${props.posts.map(post => `
+                ${getPostsComponent(props.posts)}
+            </div>
+        </main>
+    `;
+}
+function getPostsComponent(posts){
+    return posts.map(post => `
                 <div class="post">
                     <input class="edit-title" value="${post.title}" readonly>
                     <input class="edit-content" value="${post.content}" readonly>
+                    <span class="username">Posted by: ${post.user.username}</span>
+                    <div>
+                    ${getCategoriesComponent(post.categories)}
+                    </div>
                     <button class="edit-post-btn" data-id=${post.id}>Edit</button>
                     <button class="delete-post-btn" data-id=${post.id}>Delete</button>
                 </div>
                 
-    `).join('')}
-            </div>
-        </main>
-    `;
+    `).join('')
+}
+
+function getCategoriesComponent(categories){
+    return categories.map(category =>
+        `
+        <span>#${category.name}</span>
+        `).join('')
 }
 
 export function PostsEvent() {
@@ -42,7 +56,6 @@ export function PostsEvent() {
     editPost();
     deletePost();
 }
-
 
 function createPost() {
     $('#create-btn').click(function() {
