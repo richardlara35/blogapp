@@ -19,6 +19,8 @@ public class User {
     private String password;
 
     private Role role = Role.USER;
+
+    @ManyToMany(mappedBy = "categories")
     private Collection<Post> posts;
 
 

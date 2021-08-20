@@ -1,6 +1,6 @@
 package com.codeup.blogapp.data.post;
 
-import com.codeup.blogapp.data.Category;
+import com.codeup.blogapp.data.category.Category;
 import com.codeup.blogapp.data.user.User;
 
 import javax.persistence.*;
@@ -19,8 +19,10 @@ public class Post {
     @Column(nullable = false)
     private String content;
 
+    @OneToOne
     private User user;
 
+    @ManyToMany(mappedBy = "categories")
     private Collection<Category> categories;
 
     public Post(Long id, String title, String content, User user, Collection<Category> categories) {
