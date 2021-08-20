@@ -15,6 +15,9 @@ export default function PostIndex(props) {
                         <textarea class="form-control" id="content" rows="4" name="content" type="text"
                                   placeholder="Whats on your mind?"></textarea>
                     </div>
+                    <select>
+                        ${props.categories.map(category => `<option>${category.name}</option>`)}
+                    </select>
 
                     <div class="form-group row">
                         <button id="create-btn" name="addPost" type="button" class="btn btn-primary">Add Post</button>

@@ -13,6 +13,10 @@ import java.util.List;
 @RequestMapping(value = "/api/categories", headers = "application/json")
 public class CategoriesController {
 
+    List<Category> categories = new ArrayList<>(){{
+        add(new Category(1L, "Spring Boot"));
+    }};
+
     @GetMapping
     private List<Category> getCategories(){
         return new ArrayList<>(){{
@@ -20,7 +24,11 @@ public class CategoriesController {
         }};
     }
 
-
+//    @GetMapping
+//    private List<Category> getPostsByCategory(@RequestParam String categoryName){
+//
+//
+//    }
 
 
 

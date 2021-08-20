@@ -1,12 +1,10 @@
 package com.codeup.blogapp.web;
 
 
-import com.codeup.blogapp.data.Post;
-import com.codeup.blogapp.data.User;
+import com.codeup.blogapp.data.post.Post;
+import com.codeup.blogapp.data.user.User;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.Valid;
-import javax.validation.constraints.Size;
 import java.util.ArrayList;
 import java.util.List;
 
