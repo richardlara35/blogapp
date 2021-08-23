@@ -1,11 +1,14 @@
 package com.codeup.blogapp.data.user;
 
 import com.codeup.blogapp.data.post.Post;
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
 import java.util.Collection;
 
 @Entity
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,20 +16,28 @@ public class User {
 
     @Column(nullable = false, length = 15)
     private String username;
+
+    @Email
     @Column(nullable = false, length = 30)
     private String email;
+
     @Column(nullable = false, length = 12)
     private String password;
 
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
     private Role role = Role.USER;
 
-    @ManyToMany(mappedBy = "categories")
+    @OneToMany(mappedBy = "user")
+    @JsonBackReference
     private Collection<Post> posts;
+
+    public User() {
+    }
 
 
     public enum Role {USER, ADMIN}
 
-    ;
 
     public User(long id, String username, String email, String password, Collection<Post> posts) {
         this.id = id;

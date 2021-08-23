@@ -16,7 +16,7 @@ export default function PostIndex(props) {
                                   placeholder="Whats on your mind?"></textarea>
                     </div>
                     <select>
-                        ${props.categories.map(category => `<option>${category.name}</option>`)}
+                        ${getCategoriesComponent(this.props.categories)}
                     </select>
 
                     <div class="form-group row">

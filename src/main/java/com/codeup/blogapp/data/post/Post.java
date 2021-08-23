@@ -2,11 +2,16 @@ package com.codeup.blogapp.data.post;
 
 import com.codeup.blogapp.data.category.Category;
 import com.codeup.blogapp.data.user.User;
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import javax.persistence.*;
 import java.util.Collection;
 
+@JsonSerialize
 @Entity
+@Table(name="posts")
 public class Post {
 
     @Id
@@ -16,13 +21,21 @@ public class Post {
     @Column(nullable=false, length = 120)
     private String title;
 
-    @Column(nullable = false)
+    @Column(nullable=false)
     private String content;
 
-    @OneToOne
+
+    @ManyToOne
+    @JsonBackReference
     private User user;
 
-    @ManyToMany(mappedBy = "categories")
+    @ManyToMany(cascade=CascadeType.PERSIST)
+    @JsonIgnore
+    @JoinTable(
+            name="post_category",
+            joinColumns = {@JoinColumn(name="post_id")},
+            inverseJoinColumns = {@JoinColumn(name="category_id")}
+    )
     private Collection<Category> categories;
 
     public Post(Long id, String title, String content, User user, Collection<Category> categories) {
