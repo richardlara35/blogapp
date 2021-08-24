@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/api/users", headers = "Accept=application/json", produces = "application/json")
@@ -24,10 +25,11 @@ public class UsersController {
         return usersRepository.findAll();
     }
 
-    @GetMapping("{id}")
+    @GetMapping("/{id}")
     private User findById(@PathVariable Long id) {
         // api/posts/1
-        return usersRepository.getById(id);
+           return usersRepository.findById(id).get();
+
     }
 
     @GetMapping("/findByUsername")

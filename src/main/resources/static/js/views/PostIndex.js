@@ -16,7 +16,7 @@ export default function PostIndex(props) {
                                   placeholder="Whats on your mind?"></textarea>
                     </div>
                     <select>
-                        ${getCategoriesComponent(this.props.categories)}
+                        ${getCategoriesComponent(props.categories)}
                     </select>
 
                     <div class="form-group row">
@@ -32,7 +32,8 @@ export default function PostIndex(props) {
     `;
 }
 function getPostsComponent(posts){
-    return posts.map(post => `
+    return posts.map(post => {
+        return `
                 <div class="post">
                     <input class="edit-title" value="${post.title}" readonly>
                     <input class="edit-content" value="${post.content}" readonly>
@@ -44,7 +45,7 @@ function getPostsComponent(posts){
                     <button class="delete-post-btn" data-id=${post.id}>Delete</button>
                 </div>
                 
-    `).join('')
+    `}).join('')
 }
 
 function getCategoriesComponent(categories){

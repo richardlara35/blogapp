@@ -2,6 +2,7 @@ package com.codeup.blogapp.data.user;
 
 import com.codeup.blogapp.data.post.Post;
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
@@ -29,7 +30,7 @@ public class User {
     private Role role = Role.USER;
 
     @OneToMany(mappedBy = "user")
-    @JsonBackReference
+    @JsonIgnoreProperties("user")
     private Collection<Post> posts;
 
     public User() {

@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/categories", headers = "application/json", produces = "application/json")
+@RequestMapping(value = "/api/categories", headers = "Accept=application/json", produces = "application/json")
 public class CategoriesController {
 
     private final CategoryRepository categoryRepository;
