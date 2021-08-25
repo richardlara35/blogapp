@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Size;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/api/users", headers = "Accept=application/json", produces = "application/json")
@@ -39,7 +38,7 @@ public class UsersController {
 
     @GetMapping("/findByEmail")
     private User findByEmail(@RequestParam String email){
-        return usersRepository.findByEmail(email);
+        return usersRepository.findByEmail(email).get();
     }
 
     @GetMapping("{id}/updatePassword")

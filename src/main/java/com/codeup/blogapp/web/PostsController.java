@@ -1,21 +1,23 @@
 package com.codeup.blogapp.web;
 
-import com.codeup.blogapp.data.category.Category;
+
 import com.codeup.blogapp.data.post.Post;
 import com.codeup.blogapp.data.post.PostsRepository;
-import com.codeup.blogapp.data.user.User;
 import org.springframework.web.bind.annotation.*;
+import com.codeup.blogapp.services.EmailService;
 
-import java.util.ArrayList;
+
 import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/posts", headers = "Accept=application/json", produces = "application/json")
 public class PostsController {
     private final PostsRepository postsRepository;
+    private final EmailService emailService;
 
-    public PostsController(PostsRepository postsRepository) {
+    public PostsController(PostsRepository postsRepository, EmailService emailService) {
         this.postsRepository = postsRepository;
+        this.emailService = emailService;
     }
 
     @GetMapping
