@@ -23,6 +23,9 @@ export default function PostIndex(props) {
                         <button id="create-btn" name="addPost" type="button" class="btn btn-primary">Add Post</button>
                     </div>
             </form>
+            <form>
+            
+            </form>
 
             </div>
             <div class="post-container">
@@ -86,8 +89,9 @@ function createPost() {
 function editPost(){
     $('.edit-post-btn').click(function(){
 
-        $(".edit-title, .edit-content").attr("readonly", false);
-        $(this).siblings(".edit-title, .edit-content").attr("readonly", true);
+        $(".edit-post-btn").text("Edit");
+        $(".edit-title, .edit-content").attr("readonly", true);
+        $(this).siblings(".edit-title, .edit-content").attr("readonly", false);
         $(this).text("Save");
 
         $(this).on("click", submitEdit)
@@ -100,6 +104,7 @@ function submitEdit(){
     }
 
     let id = $(this).attr("data-id");
+    console.log($(this).attr("data-id"));
     let request = {
         method: "PUT",
         headers: {"Content-Type":"application/json"},
